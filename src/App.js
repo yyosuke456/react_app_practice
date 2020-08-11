@@ -1,40 +1,32 @@
 import React from 'react';
 
 const App = () => {
+  const profiles = [
+    {name: "Taro", age: 10},
+    {name: "Hanako", age: 5},
+    {name: "NoAge"}
+  ]
+
   return <div>
-    <Cat />
-    <Cat />
-    <Cat />
-    <Cat />
+    {
+      profiles.map((profile, index) => {
+        return <User name={profile.name} age={profile.age} key={index}/>
+      })
+    }
   </div>
 }
 
-const Cat = () => {
+const User = (props) => {
   return (
     <div>
-      <a>Meow</a>
+      Hi, I am {props.name}!
+      , and {props.age} years old
     </div>
   )
 }
 
-// function App() {
-//   const greeting = "Hi tom";
-//   const dom = <h1 className="foo">Hello, World! {greeting}</h1>;
-//   const click = <input type="text" onClick={() => {console.log("clicked")}}/>;
-//   const change = <input type="text" id="bar" onChange={() => {console.log("changed")}}/>;
-//   const div = (// reactの制約で、返すのは1つのタグでないといけないので、divで囲む
-//     <div>
-//       <label htmlFor="bar">bar</label>
-//       {change}
-//     </div>
-//   );
-//   const fragment = (// ↑でdivいらないのになーを避けることができる
-//     <React.Fragment>
-//       <label htmlFor="bar">bar</label>
-//       {change}
-//     </React.Fragment>
-//   );
-//   return fragment;
-// }
+User.defaultProps = {
+  age: 1
+}
 
 export default App;
